@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block title %}Blog Posts - Kelly Bootstrap Template{% endblock %}
+
+{% block body_class %}blog-page{% endblock %}
+
+{% block content %}
+<section id="blog" class="blog section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Blog Posts</h2>
+        <p>Latest articles and updates</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text text-muted">
+                            <small>{{ post.created_at|date:"F j, Y" }}</small>
+                        </p>
+                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No blog posts yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
